@@ -1,0 +1,49 @@
+.btn-primary {
+  color: #fff;
+  background-color: #2b7478;
+  border-color: #2b7478;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #2b7478;
+  border-color: #2b7478;
+}
+.icon-img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.account {
+  text-decoration: none;
+  color: black;
+}
+
+.login-img {
+  width: 500px;
+  height: 500px;
+  margin-bottom: 20px;
+}
+
+.icon-img-R {
+  width: 70px;
+  height: 70px;
+  margin-top: 20px;
+}
+
+.title {
+  color: #2b7478;
+  font-size: 40px;
+  font-style: bold;
+  margin-left: 140px;
+  margin-top: 10px;
+}
+
+.login-title {
+  color: #38898d;
+  font-size: 40px;
+  font-style: bold;
+  margin-left: 60px;
+}
