@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.webp";
+import logo from "../../assets/logo4.png";
 import login from "../../assets/n_login.svg";
 import "./n_Login.css";
 export default class n_Login extends Component {
@@ -124,7 +124,7 @@ export default class n_Login extends Component {
               </Form>
             </Col>
             <Col lg={6} md={6} sm={12}>
-              <img class="login-img"  src={login} />
+              <img class="login-img" src={login} />
             </Col>
           </Row>
         </Container>

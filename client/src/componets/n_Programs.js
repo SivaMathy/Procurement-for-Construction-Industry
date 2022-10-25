@@ -63,12 +63,12 @@ export default class n_programs extends Component {
           className="font-weight-bold"
           style={{
             color: "black",
-            width: "250px",
+            width: "450px",
             fontSize: "30px",
             marginTop: "25px",
           }}
         >
-          All Programs
+          All Suppliers & Items
         </p>
         <Row>
           <Col lg={6} md={6} sm={12}>
@@ -91,7 +91,7 @@ export default class n_programs extends Component {
                 className="text-decoration-none text-dark "
                 href="/createProgram"
               >
-                Add Medical Program
+                Add Suppliers
               </a>
               <i className="bi bi-box-arrow-in-right"></i>
             </button>
@@ -105,12 +105,12 @@ export default class n_programs extends Component {
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Age Group</th>
-                      <th scope="col">Gender</th>
+                      <th scope="col">Supplier Name</th>
+                      <th scope="col">Item Name</th>
+                      <th scope="col">Item Id</th>
                       <th scope="col">Sample</th>
                       <th scope="col">Description</th>
-                      <th scope="col">Price(Rs)</th>
+                      <th scope="col">Unit Price(Rs)</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
