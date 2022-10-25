@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo4.png";
 import register from "../assets/n_register.svg";
 import "./n_login/n_Login.css";
 export default class n_CreateProgram extends Component {
@@ -14,7 +14,24 @@ export default class n_CreateProgram extends Component {
       sample: "",
       desc: "",
       price: "",
+      users: [],
     };
+  }
+
+  componentDidMount() {
+    this.retriveUsers();
+  }
+
+  retriveUsers() {
+    axios.get("http://localhost:8000/users").then((res) => {
+      if (res.data.success) {
+        this.setState({
+          users: res.data.existingUsers,
+        });
+
+        console.log(this.state.users);
+      }
+    });
   }
 
   handleInputChange = (e) => {
@@ -66,18 +83,18 @@ export default class n_CreateProgram extends Component {
           <form class="text-left was-validated">
             <img class="icon-img-R" src={logo} />
             <label for="addProgram" className="title font-weight-bold">
-              Medical Program
+              Supplier & Item
             </label>
             <Row>
               <Col lg={6} md={6} sm={12}>
                 <div class="form-group">
-                  <label for="patient name">Title</label>
+                  <label for="patient name">Supplier Name</label>
                   <input
                     type="text"
                     id="title"
                     name="title"
                     class="form-control"
-                    placeholder="Enter title"
+                    placeholder="Enter Supplier Name"
                     value={this.state.title}
                     onChange={this.handleInputChange}
                     pattern="[a-z ]{8,}"
@@ -90,19 +107,19 @@ export default class n_CreateProgram extends Component {
                   <div class="valid-feedback font-weight-bold">Looks good!</div>
                 </div>
                 <div class="form-group">
-                  <label for="patient name">Age group</label>
-                  {/* <input
+                  <label for="patient name">Item Name</label>
+                  <input
                     type="text"
                     id="ageGroup"
                     name="ageGroup"
                     class="form-control"
-                    placeholder="Enter ageGroup"
+                    placeholder="Enter Item Name"
                     value={this.state.ageGroup}
                     onChange={this.handleInputChange}
                     pattern=".{8,}"
                     required
-                  /> */}
-                  <select
+                  />
+                  {/* <select
                     class="form-control"
                     id="ageGroup"
                     name="ageGroup"
@@ -114,7 +131,7 @@ export default class n_CreateProgram extends Component {
                     <option>19 - 30</option>
                     <option>45+</option>
                     <option>Any age group</option>
-                  </select>
+                  </select> */}
 
                   <div class="invalid-feedback font-weight-bold">
                     Invalid Input.
@@ -123,29 +140,32 @@ export default class n_CreateProgram extends Component {
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Gender</label>
-                    {/* <input
+                    <label for="phone">Item Id</label>
+                    <input
                       type="text"
                       id="gender"
                       name="gender"
                       class="form-control"
-                      placeholder="Enter gender"
+                      placeholder="Enter Item Id"
                       value={this.state.gender}
                       onChange={this.handleInputChange}
-                      pattern=".{8,}"
+                      pattern=".{5,}"
                       title="Eight or more characters"
                       required
-                    /> */}
-                    <select
+                    />
+                    {/* <select
                       class="form-control"
                       id="gender"
                       name="gender"
                       value={this.state.gender}
                       onChange={this.handleInputChange}
                     >
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
+                      {this.state.users.map((users, index) => (
+                        <option>
+                          {users.email} - {users.phone}
+                        </option>
+                      ))}
+                    </select> */}
                     <div class="invalid-feedback font-weight-bold">
                       Invalid Input.
                     </div>
@@ -185,7 +205,7 @@ export default class n_CreateProgram extends Component {
 
               <Col lg={6} md={6} sm={12}>
                 <div class="form-group">
-                  <label for="phone">Description</label>
+                  <label for="phone">Item Description</label>
                   <textarea
                     type="text"
                     id="desc"
@@ -205,7 +225,7 @@ export default class n_CreateProgram extends Component {
                 </div>
 
                 <div class="form-group">
-                  <label for="price">Price</label>
+                  <label for="price">Unit Price</label>
                   <input
                     type="text"
                     id="price"

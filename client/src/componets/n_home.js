@@ -3,13 +3,13 @@ import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import login from "../assets/n_notFound.svg";
 import dash from "../assets/n_dash.jpg";
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo4.png";
 import userManagement from "../assets/userManagement.png";
 import labManagement from "../assets/labManagement.png";
 import programManagement from "../assets/programManagement.png";
-import medicine from"../assets/medicine.png";
-import doctor from"../assets/doctor.png";
-import delivery from"../assets/vehicle.png";
+import medicine from "../assets/medicine.png";
+import doctor from "../assets/doctor.png";
+import delivery from "../assets/vehicle.png";
 // import "./n_design.css";
 export default class n_home extends Component {
   state = {
@@ -116,7 +116,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Patients
+                          Manage Employees
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -148,7 +148,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Programs
+                          Manage Supplier
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -177,10 +177,7 @@ export default class n_home extends Component {
                           width: "200px",
                         }}
                       >
-                        <a
-                          className="text-decoration-none text-dark "
-                          href="/"
-                        >
+                        <a className="text-decoration-none text-dark " href="/">
                           <img
                             class="d-block w-100"
                             src={labManagement}
@@ -250,10 +247,13 @@ export default class n_home extends Component {
                           width: "200px",
                         }}
                       >
-                        <a className="text-decoration-none text-dark " href="/cruds/tab">
+                        <a
+                          className="text-decoration-none text-dark "
+                          href="/cruds/tab"
+                        >
                           <img
                             class="d-block w-100"
-                            src={ medicine}
+                            src={medicine}
                             alt="First slide"
                             style={{
                               height: "150px",

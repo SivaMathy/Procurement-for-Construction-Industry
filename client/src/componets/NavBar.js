@@ -1,20 +1,17 @@
 import React from "react";
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo4.png";
 
 function NavBar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      
         <img
           class="card-img-top ml-3"
           src={logo}
-          style={{ height: "50px", width: "50px" }}
+          style={{ height: "100px", width: "100px" }}
         />
-        <span className=" text-uppercase text-primary" >
-
-          <h2 className="navbar mt-3">&nbsp;&nbsp;ZONE</h2>
-
+        <span className=" text-uppercase text-primary">
+          <h2 className="navbar mt-3">&nbsp;&nbsp;Silva&Sons</h2>
         </span>
 
         <div className="container-fluid">
@@ -47,11 +44,7 @@ function NavBar() {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    aria-current="page"
-                    href="/phar"
-                  >
+                  <a class="nav-link active" aria-current="page" href="/phar">
                     Buy Medicines
                   </a>
                 </li>
@@ -64,8 +57,6 @@ function NavBar() {
                     Health Programs
                   </a>
                 </li>
-
-            
               </ul>
             </div>
             <form className="d-flex" style={{ marginLeft: "260px" }}>

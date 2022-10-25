@@ -1,7 +1,7 @@
 import React, { useRef, Component } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo4.png";
 import slide1 from "../assets/n_slide1.jpg";
 import slide2 from "../assets/n_slide2.jpg";
 import slide3 from "../assets/n_slide3.jpg";
@@ -66,7 +66,7 @@ export default class n_Patients extends Component {
       { title: "DoB", field: "dob" },
     ];
     // const tableRows = [users];
-    doc.addImage(logo, "webp", 20, 3, 30, 30);
+    doc.addImage(logo, "JPG", 20, 3, 30, 30);
     doc.text(70, 10, "Hospital Zone Patient Details");
     //doc.addPage();
     //doc.text(120, 414, "Nishanthan Kanagasunderam");
