@@ -34,7 +34,7 @@ export default class n_EditProgram extends Component {
     //const id = this.props.match.params.id;
     const id = "6326cc429c3a1d51a4ba767a";
     const { title, ageGroup, gender, sample, desc, price } = this.state;
-   // const navigate = useNavigate;
+    // const navigate = useNavigate;
     const data = {
       title: title,
       ageGroup: ageGroup,
@@ -66,7 +66,7 @@ export default class n_EditProgram extends Component {
   componentDidMount() {
     console.log("nish");
     //const id = this.props.match.params.id;
-    const id = "6326cc429c3a1d51a4ba767a";
+    const id = "6358178d4d20e92f9dd72a69";
 
     axios.get(`http://localhost:8000/program/${id}`).then((res) => {
       //console.log("Fail");
@@ -91,12 +91,12 @@ export default class n_EditProgram extends Component {
           <form class="text-left was-validated">
             <img class="icon-img-R" src={logo} />
             <label for="Register" className="title font-weight-bold">
-              Edit Medical Program
+              Edit Supplier
             </label>
             <Row>
               <Col lg={6} md={6} sm={12}>
                 <div class="form-group">
-                  <label for="patient name">Title</label>
+                  <label for="patient name">Supplier Name</label>
                   <input
                     type="text"
                     id="title"
@@ -115,8 +115,8 @@ export default class n_EditProgram extends Component {
                   <div class="valid-feedback font-weight-bold">Looks good!</div>
                 </div>
                 <div class="form-group">
-                  <label for="patient name">Age group</label>
-                  {/* <input
+                  <label for="patient name">Item Name</label>
+                  <input
                     type="text"
                     id="ageGroup"
                     name="ageGroup"
@@ -126,9 +126,9 @@ export default class n_EditProgram extends Component {
                     onChange={this.handleInputChange}
                     pattern=".{8,}"
                     required
-                  /> */}
+                  />
 
-                  <select
+                  {/* <select
                     class="form-control"
                     id="ageGroup"
                     name="ageGroup"
@@ -140,7 +140,7 @@ export default class n_EditProgram extends Component {
                     <option>19 - 30</option>
                     <option>45+</option>
                     <option>Any age group</option>
-                  </select>
+                  </select> */}
 
                   <div class="invalid-feedback font-weight-bold">
                     Invalid Input.
@@ -149,8 +149,8 @@ export default class n_EditProgram extends Component {
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Gender</label>
-                    {/* <input
+                    <label for="phone">Item Id</label>
+                    <input
                       type="text"
                       id="gender"
                       name="gender"
@@ -158,11 +158,11 @@ export default class n_EditProgram extends Component {
                       placeholder="Enter gender"
                       value={this.state.gender}
                       onChange={this.handleInputChange}
-                      pattern=".{8,}"
+                      pattern=".{5,}"
                       title="Eight or more characters"
                       required
-                    /> */}
-                    <select
+                    />
+                    {/* <select
                       class="form-control"
                       id="gender"
                       name="gender"
@@ -171,7 +171,7 @@ export default class n_EditProgram extends Component {
                     >
                       <option>Male</option>
                       <option>Female</option>
-                    </select>
+                    </select> */}
                     <div class="invalid-feedback font-weight-bold">
                       Invalid Input.
                     </div>
@@ -208,7 +208,7 @@ export default class n_EditProgram extends Component {
 
               <Col lg={6} md={6} sm={12}>
                 <div class="form-group">
-                  <label for="phone">Description</label>
+                  <label for="phone">Item Description</label>
                   <textarea
                     type="text"
                     id="desc"
@@ -228,7 +228,7 @@ export default class n_EditProgram extends Component {
                 </div>
 
                 <div class="form-group">
-                  <label for="phone">Price</label>
+                  <label for="phone">Unit Price</label>
                   <input
                     type="text"
                     id="price"
@@ -255,7 +255,7 @@ export default class n_EditProgram extends Component {
                     marginTop: "30px",
                   }}
                 >
-                  Submit
+                  Update
                 </button>
               </Col>
             </Row>
