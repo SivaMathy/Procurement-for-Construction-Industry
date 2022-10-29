@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 import logo from "../assets/logo.webp";
-import slide1 from "../assets/n_slide1.jpg";
-import slide2 from "../assets/n_slide2.jpg";
-import slide3 from "../assets/n_slide3.jpg";
+import slide1 from "../assets/n_slide01.jpg";
+import slide2 from "../assets/n_slide02.jpg";
+import slide3 from "../assets/n_slide03.jpg";
 
 export default class n_programs extends Component {
   constructor(props) {
@@ -63,12 +63,12 @@ export default class n_programs extends Component {
           className="font-weight-bold"
           style={{
             color: "black",
-            width: "250px",
+            width: "450px",
             fontSize: "30px",
             marginTop: "25px",
           }}
         >
-          All Programs
+          All Suppliers & Items
         </p>
         <Row>
           <Col lg={6} md={6} sm={12}>
@@ -91,7 +91,7 @@ export default class n_programs extends Component {
                 className="text-decoration-none text-dark "
                 href="/createProgram"
               >
-                Add Medical Program
+                Add Suppliers
               </a>
               <i className="bi bi-box-arrow-in-right"></i>
             </button>
@@ -102,15 +102,15 @@ export default class n_programs extends Component {
             <Row>
               <Col lg={9} md={6} sm={12}>
                 <table class="table table-striped">
-                  <thead>
+                  <thead class="thead-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Age Group</th>
-                      <th scope="col">Gender</th>
+                      <th scope="col">Supplier Name</th>
+                      <th scope="col">Item Name</th>
+                      <th scope="col">Item Id</th>
                       <th scope="col">Sample</th>
                       <th scope="col">Description</th>
-                      <th scope="col">Price(Rs)</th>
+                      <th scope="col">Unit Price(Rs)</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -136,7 +136,7 @@ export default class n_programs extends Component {
                             className="btn btn-warning"
                             href={`/editProgram/${programs._id}`}
                           >
-                            <i className="fas fa-edit"></i>&nbsp;Edit
+                            <i className="fas fa-edit"></i>
                           </a>
                           &nbsp;
                           <a
@@ -144,7 +144,7 @@ export default class n_programs extends Component {
                             href="#"
                             onClick={() => this.onDelete(programs._id)}
                           >
-                            <i className="fas fa-trash"></i>&nbsp;Delete
+                            <i className="fas fa-trash"></i>
                           </a>
                         </td>
                       </tr>
@@ -155,7 +155,7 @@ export default class n_programs extends Component {
               <Col lg={3} md={6} sm={12}>
                 <br></br>
                 <hr></hr>
-                <h3>ZONE</h3>
+                <h3>Silva & Sons</h3>
                 <div
                   id="carouselExampleControls"
                   class="carousel slide"

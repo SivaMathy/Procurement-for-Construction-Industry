@@ -1,10 +1,10 @@
 import React, { useRef, Component } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
-import logo from "../assets/logo.webp";
-import slide1 from "../assets/n_slide1.jpg";
-import slide2 from "../assets/n_slide2.jpg";
-import slide3 from "../assets/n_slide3.jpg";
+import logo from "../assets/logo4.png";
+import slide1 from "../assets/n_slide01.jpg";
+import slide2 from "../assets/n_slide02.jpg";
+import slide3 from "../assets/n_slide03.jpg";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -66,7 +66,7 @@ export default class n_Patients extends Component {
       { title: "DoB", field: "dob" },
     ];
     // const tableRows = [users];
-    doc.addImage(logo, "webp", 20, 3, 30, 30);
+    doc.addImage(logo, "JPG", 20, 3, 30, 30);
     doc.text(70, 10, "Hospital Zone Patient Details");
     //doc.addPage();
     //doc.text(120, 414, "Nishanthan Kanagasunderam");
@@ -111,7 +111,7 @@ export default class n_Patients extends Component {
             marginTop: "25px",
           }}
         >
-          All Patients
+          All Employees
         </p>
         <div className="col-lg-9 mt-2 mb-2">
           <input
@@ -130,14 +130,14 @@ export default class n_Patients extends Component {
             <Row>
               <Col lg={9} md={6} sm={12}>
                 <table class="table table-striped">
-                  <thead>
+                  <thead class="thead-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">User Name</th>
+                      <th scope="col">Employee Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Password</th>
-                      <th scope="col">Dob</th>
+                      <th scope="col">NIC</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -170,7 +170,7 @@ export default class n_Patients extends Component {
                             href="#"
                             onClick={() => this.onDelete(users._id)}
                           >
-                            <i className="fas fa-trash"></i>&nbsp;Delete
+                            <i className="fas fa-trash"></i>
                           </a>
                         </td>
                       </tr>
@@ -196,7 +196,7 @@ export default class n_Patients extends Component {
                 </button>
                 <br></br>
                 <hr></hr>
-                <h3>ZONE</h3>
+                <h3>Silva & Sons</h3>
                 <div
                   id="carouselExampleControls"
                   class="carousel slide"

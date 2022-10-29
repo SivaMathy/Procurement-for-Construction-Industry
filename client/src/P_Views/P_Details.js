@@ -14,7 +14,7 @@ import { updatedata, deldata } from "./context/ContextProvider";
 function P_Details() {
   const { updata } = useContext(updatedata);
 
-  const { dltdata} = useContext(deldata);
+  const { dltdata } = useContext(deldata);
   const [getpatientdata, setPatientdata] = useState([]);
   console.log(getpatientdata);
   //const { id } = useParams("");
@@ -144,7 +144,7 @@ function P_Details() {
                             className="-mt-8"
                           />
                           <p className="text-center font-bold text-2xl text-blue-600">
-                            Zone Hospital
+                            Silva & Sons
                           </p>
                         </div>
 

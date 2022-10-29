@@ -175,26 +175,25 @@ export default class n_programs extends Component {
                         </CardContent>
                         <CardActions>
                           {/* <Button size="medium">Book Now</Button> */}
-                          <StripeCheckout 
-          stripeKey={process.env.REACT_APP_STRIPE_KEY || ""}
-          // token={handleToken}
-          name=""
-          panelLabel={`Pay`}
-          currency="USD"
-          // amount={amount * 100}
-      >
-       <center>
-                  <button
-                    class="btn btn-primary"
-                    type="submit"
-                    variant="contained"
-                    style={{width:"100px"}}
-                    
-                  >
-                   Book Now 
-                  </button>
-                </center>
-      </StripeCheckout>
+                          <StripeCheckout
+                            stripeKey={process.env.REACT_APP_STRIPE_KEY || ""}
+                            // token={handleToken}
+                            name=""
+                            panelLabel={`Pay`}
+                            currency="USD"
+                            // amount={amount * 100}
+                          >
+                            <center>
+                              <button
+                                class="btn btn-primary"
+                                type="submit"
+                                variant="contained"
+                                style={{ width: "100px" }}
+                              >
+                                Book Now
+                              </button>
+                            </center>
+                          </StripeCheckout>
                         </CardActions>
                       </Card>
                       <br></br>
@@ -231,26 +230,23 @@ export default class n_programs extends Component {
                           </Typography>
                         </CardContent>
                         <CardActions>
-                        <StripeCheckout 
-          stripeKey={process.env.REACT_APP_STRIPE_KEY || ""}
-          
-          name=""
-          panelLabel={`Pay`}
-          currency="USD"
-         
-      >
-       <center>
-                  <button
-                    class="btn btn-primary"
-                    type="submit"
-                    variant="contained"
-                    style={{width:"100px"}}
-                    
-                  >
-                    Book Now
-                  </button>
-                </center>
-      </StripeCheckout>
+                          <StripeCheckout
+                            stripeKey={process.env.REACT_APP_STRIPE_KEY || ""}
+                            name=""
+                            panelLabel={`Pay`}
+                            currency="USD"
+                          >
+                            <center>
+                              <button
+                                class="btn btn-primary"
+                                type="submit"
+                                variant="contained"
+                                style={{ width: "100px" }}
+                              >
+                                Book Now
+                              </button>
+                            </center>
+                          </StripeCheckout>
                         </CardActions>
                       </Card>
                     </Col>
@@ -261,7 +257,7 @@ export default class n_programs extends Component {
               <Col lg={3} md={6} sm={12}>
                 <br></br>
                 <hr></hr>
-                <h3>ZONE</h3>
+                <h3>Silva & Sons</h3>
                 <div
                   id="carouselExampleControls"
                   class="carousel slide"

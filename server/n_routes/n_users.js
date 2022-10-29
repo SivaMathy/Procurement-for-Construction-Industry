@@ -37,8 +37,8 @@ router.post("/user/save", (req, res) => {
           "Hi " +
           user +
           ",\n\n" +
-          "=====Welcome to Hospital Zone.=====\n" +
-          "You are successfully registered to ZONE hospital account.Your informations are below\n" +
+          "=====Welcome to Silva & Sons.=====\n" +
+          "You are successfully registered to Silva & Sons account.Your informations are below\n" +
           "User Name : " +
           user +
           "\n" +

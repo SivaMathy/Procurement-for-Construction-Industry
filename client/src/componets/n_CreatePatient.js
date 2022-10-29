@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo4.png";
 import register from "../assets/n_register.svg";
 import "./n_login/n_Login.css";
 export default class n_CreatePatient extends Component {
@@ -68,7 +68,7 @@ export default class n_CreatePatient extends Component {
                   Register
                 </label>
                 <div class="form-group">
-                  <label for="patient name">Patient Name</label>
+                  <label for="patient name">Employee Name</label>
                   <input
                     type="text"
                     id="userName"
@@ -127,9 +127,9 @@ export default class n_CreatePatient extends Component {
                     </div>
                   </div>
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Date of Birth</label>
+                    <label for="phone">NIC Number</label>
                     <input
-                      type="date"
+                      type="text"
                       id="dob"
                       name="dob"
                       class="form-control"
@@ -141,7 +141,7 @@ export default class n_CreatePatient extends Component {
                     <div class="invalid-feedback font-weight-bold">
                       Invalid Input.
                     </div>
-                    
+
                     <div class="valid-feedback font-weight-bold">
                       Looks good!
                     </div>
