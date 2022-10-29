@@ -24,6 +24,12 @@ import CrudDelete from "./componets/cruds/CrudDelete";
 import AddnewDoctor from "./componets/cruds/AddnewDoctor";
 import Doctorcrudtable from "./componets/cruds/Doctorcrudtable"
 import ThHome from "./componets/pages/ThHome";
+
+//csse
+import Order from "./componets/csse_order2";
+import Auditor from "./componets/csse_auditor";
+
+
 // Mathy
 import AddMedicines from "./componets/m_AddMedicines";
 import MedicinesAdmin from "./componets/m_MedicinesAdmin";
@@ -41,6 +47,7 @@ import P_Details from "./P_Views/P_Details";
 import P_AssignDate from "./P_Views/P_AssignDate";
 import Doctoredit from "./componets/cruds/Doctoredit";
 import Doctordelete from "./componets/cruds/Doctordelete";
+
 function App() {
   return (
     <div className="App">
@@ -83,6 +90,10 @@ function App() {
           <Route path="/editdate/:id" element={<P_AssignDate />} />
           <Route exact path="/cruds/:_id/dedit" element={<Doctoredit />} />
           <Route exact path="/cruds/:_id/ddelete" element={<Doctordelete />} />
+          <Route  path="/order" element={<Order/>} />
+          <Route  path="/auditor" element={<Auditor/>} />
+
+
         </Routes>
       </BrowserRouter>
     </div>
