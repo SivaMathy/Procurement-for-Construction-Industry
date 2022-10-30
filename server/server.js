@@ -22,6 +22,7 @@ const programRoutes = require("./n_routes/n_programs");
 
 const medicine = require("./n_routes/m_Medicine");
 const delivary = require("./n_routes/m_delivary");
+const order = require("./csse_routes/csse_order");
 
 app.use((req, res, next) => {
   res.locals.path = req.path;
@@ -45,6 +46,7 @@ app.use(router);
 app.use("/medicine", medicine);
 app.use("/delivary", delivary);
 app.use("/api/cruds", crudRoutes);
+app.use("/order", order);
 const PORT = 8000;
 
 const DB_URL =
