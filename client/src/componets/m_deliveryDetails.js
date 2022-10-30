@@ -9,7 +9,7 @@ class DeliveryDetails extends Component {
     delivery: [],
     uauditor: "",
     ucomments: "",
-    uid:""
+    uid: "",
   };
   getDelivery = () => {
     axios.get("http://localhost:8000/order/show").then((res) => {
@@ -39,11 +39,11 @@ class DeliveryDetails extends Component {
     axios
       .put(`http://localhost:8000/order/update/${this.state.uid}`, {
         comments: this.state.ucomments,
-        auditor_status:this.state.uauditor,
+        auditor_status: this.state.uauditor,
       })
       .then((res) => {
         console.log(res);
-        this.setState({ uauditor: "",ucomments:"" });
+        this.setState({ uauditor: "", ucomments: "" });
         window.location = "/delivery";
       });
   };
@@ -91,111 +91,106 @@ class DeliveryDetails extends Component {
   render() {
     return (
       <div className="container">
-        
-          <div className="">
-            <div className="col-md-12 m-auto">
-              <h1 className="display-12 text-center">
-                <b> Delivery Details</b>
-              </h1>
-              <br />
-              <input
-                className="form-control"
-                type="search"
-                placeholder="search"
-                name="searchbar"
-                onChange={this.handleSearchArea}
-                style={{
-                  width: "250px",
-                }}
-              ></input>
-              <br></br>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Order ID </th>
-                    
-                    
-                    <th scope="col">Company Name</th>
-                    <th scope="col">Site Name</th>
-                    <th scope="col">Supplier Name</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Agreed Item Price</th>
-                    <th scope="col">Delivery Address</th>
-                    <th scope="col">Delivery Date</th>
+        <div className="">
+          <div className="col-md-12 m-auto">
+            <h1 className="display-12 text-center">
+              <b> Delivery Details</b>
+            </h1>
+            <br />
+            <input
+              className="form-control"
+              type="search"
+              placeholder="search"
+              name="searchbar"
+              onChange={this.handleSearchArea}
+              style={{
+                width: "250px",
+              }}
+            ></input>
+            <br></br>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Order ID </th>
 
-                    <th scope="col">Auditor Status</th>
-                    <th scope="col">Comments</th>
+                  <th scope="col">Company Name</th>
+                  <th scope="col">Site Name</th>
+                  <th scope="col">Supplier Name</th>
+                  <th scope="col">Item</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Agreed Item Price</th>
+                  <th scope="col">Delivery Address</th>
+                  <th scope="col">Delivery Date</th>
+
+                  <th scope="col">Auditor Status</th>
+                  <th scope="col">Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.delivery.map((delivery) => (
+                  <tr key={delivery._id}>
+                    <th>{delivery._id}</th>
+
+                    <td>{delivery.company_name}</td>
+                    <td>{delivery.site_name}</td>
+
+                    <td>{delivery.supplier_name}</td>
+                    <td>{delivery.item}</td>
+                    <td>{delivery.quantity}</td>
+                    <td>{delivery.description}</td>
+                    <td>{delivery.agreed_price}</td>
+                    <td>{delivery.delivery_address}</td>
+                    <td>{delivery.delivery_date}</td>
+                    <td>{delivery.auditor_status}</td>
+                    <td>{delivery.comments}</td>
+                    <td></td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-warning"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                        onClick={() => {
+                          this.setState({
+                            uid: delivery._id,
+                            uauditor: delivery.auditor_status,
+                            ucomments: delivery.comments,
+                          });
+                        }}
+                      >
+                        <i className="fas fa-edit"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        onClick={this.onDeleteClick.bind(this, delivery._id)}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {this.state.delivery.map((delivery) => (
-                    <tr key={delivery._id}>
-                      <th>{delivery._id}</th>
-                 
-                      <td>{delivery.company_name}</td>
-                      <td>{delivery.site_name}</td>
-
-                      <td>{delivery.supplier_name}</td>
-                      <td>{delivery.item}</td>
-                      <td>{delivery.quantity}</td>
-                      <td>{delivery.description}</td>
-                      <td>{delivery.agreed_price}</td>
-                      <td>{delivery.delivery_address}</td>
-                      <td>{delivery.delivery_date}</td>
-                      <td>{delivery.auditor_status}</td>
-                      <td>{delivery.comments}</td>
-                      <td></td>
-                      <td>
-                        <button
-                            type="button"
-                            class="btn btn-warning"
-                            data-toggle="modal"
-                            data-target="#myModal"
-                            onClick={() => {
-                              this.setState({
-                                uid: delivery._id,
-                                uauditor:delivery.auditor_status,
-                                ucomments:delivery.comments
-
-                              });
-                            }}
-                          >
-                            UPDATE
-                          </button>
-                      </td>
-                      <td><button
-                            type="button"
-                            class="btn btn-danger"
-                            onClick={this.onDeleteClick.bind(
-                              this, delivery._id
-                             
-                            )}
-                          >
-                          DELETE
-                          </button></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div class="row">
-              <div class="col-sm"></div>
-              <div class="col-sm"></div>
-              <div class="col-sm" style={{ paddingLeft: "600px" }}>
-                <button
-                  type="button"
-                  class="btn btn-info"
-                  onClick={this.jsPdfGenerator}
-                >
-                  <i class="bi bi-printer-fill"> PRINT</i>
-                </button>
-                <br /> <br />
-              </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm"></div>
+            <div class="col-sm" style={{ paddingLeft: "600px" }}>
+              <button
+                type="button"
+                class="btn btn-info"
+                onClick={this.jsPdfGenerator}
+              >
+                <i class="bi bi-printer-fill"> PRINT</i>
+              </button>
+              <br /> <br />
             </div>
           </div>
-
+        </div>
 
         <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
           <div class="modal-dialog">
@@ -206,7 +201,7 @@ class DeliveryDetails extends Component {
                 </button>
               </div>
               <div class="modal-body">
-                <input
+                {/* <input
                   onChange={(e) => this.handleUpdate(e)}
                   value={this.state.uauditor}
                   name="uauditor"
@@ -217,7 +212,17 @@ class DeliveryDetails extends Component {
                     fontSize: "15px",
                   }}
                   placeholder="Auditor Status"
-                />
+                /> */}
+                <select
+                  onChange={(e) => this.handleUpdate(e)}
+                  value={this.state.uauditor}
+                  name="uauditor"
+                  class="form-control"
+                >
+                  <option>Accepted</option>
+                  <option>Rejected</option>
+                  <option>Pendding</option>
+                </select>
               </div>
               <div class="modal-body">
                 <input
@@ -245,7 +250,7 @@ class DeliveryDetails extends Component {
                   class="btn btn-danger"
                   data-dismiss="modal"
                   onClick={() => {
-                    this.setState({ uauditor: "",ucomments:"" });
+                    this.setState({ uauditor: "", ucomments: "" });
                   }}
                 >
                   Close
