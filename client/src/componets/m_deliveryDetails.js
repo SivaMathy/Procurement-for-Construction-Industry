@@ -159,7 +159,7 @@ class DeliveryDetails extends Component {
                           });
                         }}
                       >
-                        UPDATE
+                        <i className="fas fa-edit"></i>
                       </button>
                     </td>
                     <td>
@@ -168,7 +168,7 @@ class DeliveryDetails extends Component {
                         class="btn btn-danger"
                         onClick={this.onDeleteClick.bind(this, delivery._id)}
                       >
-                        DELETE
+                        <i className="fas fa-trash"></i>
                       </button>
                     </td>
                   </tr>
@@ -219,8 +219,8 @@ class DeliveryDetails extends Component {
                   name="uauditor"
                   class="form-control"
                 >
-                  <option>Accept</option>
-                  <option>Reject</option>
+                  <option>Accepted</option>
+                  <option>Rejected</option>
                   <option>Pendding</option>
                 </select>
               </div>
