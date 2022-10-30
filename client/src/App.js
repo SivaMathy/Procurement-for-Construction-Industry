@@ -27,7 +27,7 @@ import ThHome from "./componets/pages/ThHome";
 
 //csse
 import Order from "./componets/csse_order2";
-import Auditor from "./componets/csse_auditor";
+import Auditor from "./componets/csse_auditor2";
 
 
 // Mathy

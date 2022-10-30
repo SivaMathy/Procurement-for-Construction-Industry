@@ -1,101 +1,103 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
-
+import jsPdf from "jspdf";
 import axios from "axios";
 
-class AuditorDetails extends Component {
+
+
+class DeliveryDetails extends Component {
   state = {
-    order: [],
-    ucheck: "",
-    uid: "",
+    delivery: [],
+    ucheck:"",
+    uid:"",
+
   };
-  getOrder = () => {
+  getDelivery = () => {
     axios.get("http://localhost:8000/order/find").then((res) => {
       console.log(res);
-      this.setState({ order: res.data });
+      this.setState({ delivery: res.data });
     });
   };
+  onDeleteClick(id) {
+    axios
+      .delete(`http://localhost:8000/delivary/delete/${id}`)
+      .then((res) => {
+        this.props.history.push("/delivery");
+      })
+      .catch((err) => {
+        console.log("Error ");
+        
+      });
+  }
   componentDidMount = () => {
-    this.getOrder();
+    this.onDeleteClick();
+    this.getDelivery();
   };
-  //   onDeleteClick(id) {
-  //     axios
-  //       .delete(`http://localhost:8000/delivary/delete/${id}`)
-  //       .then((res) => {
-  //         this.props.history.push("/delivery");
-  //       })
-  //       .catch((err) => {
-  //         console.log("Error ");
+  handleUpdate = (e) => {
+   
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  handleModalUpdate = (e) => {
+    console.log("mathy");
+    axios
+      .put(`http://localhost:8000/delivary/update/${this.state.uid}`, {
+        isCheck: this.state.ucheck,
+        
 
-  //       });
-  //   }
-  //   componentDidMount = () => {
-  //     this.onDeleteClick();
-  //     this.getDelivery();
-  //   };
-  //   handleUpdate = (e) => {
-
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-  //   handleModalUpdate = (e) => {
-  //     console.log("mathy");
-  //     axios
-  //       .put(`http://localhost:8000/delivary/update/${this.state.uid}`, {
-  //         isCheck: this.state.ucheck,
-
-  //       })
-  //       .then((res) => {
-  //         console.log(res);
-  //         this.setState({ ucheck: ""
-  //        });
-  //         window.location = "/delivery";
-  //       });
-  //   };
+      })
+      .then((res) => {
+        console.log(res);
+        this.setState({ ucheck: ""
+       });
+        window.location = "/delivery";
+      });
+  };
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8000/order/find").then((res) => {
+    axios.get("http://localhost:8000/delivary/find").then((res) => {
       if (res.data.success) {
-        this.filterData(res.data.existingOrder, searchKey);
+        this.filterData(res.data.existingDelivary, searchKey);
       }
     });
   };
 
-  filterData(order, searchKey) {
-    const result = order.filter((order) =>
-      order.company_name.includes(searchKey)
-    );
+  filterData( delivery, searchKey) {
+    const result = delivery.filter((delivery) =>delivery.fname.includes(searchKey));
 
-    this.setState({ order: result });
+    this.setState({ delivery: result });
   }
   //pdf generation
+ 
+  jsPdfGenerator=(delivery)=>{
+    var doc=new jsPdf('p','pt');
+    
+    const columns=[
+      {title:"First Name",field:"fname"},
+      {title:"Last Name",field:"lname"},
+      {title:"Email",field:"email"},
+      {title:"Phone Number",field:"phonenum"},
+      {title:"City",field:"city"},
+      {title:"District",field:"district"},
+    ];
+   
+   // const tableRows=[delivery];
+    doc.text(20,20, 'Delivery Details Report');
+    doc.addFont('helvetica', 'normal');
 
-  //   jsPdfGenerator=(delivery)=>{
-  //     var doc=new jsPdf('p','pt');
-
-  //     const columns=[
-  //       {title:"First Name",field:"fname"},
-  //       {title:"Last Name",field:"lname"},
-  //       {title:"Email",field:"email"},
-  //       {title:"Phone Number",field:"phonenum"},
-  //       {title:"City",field:"city"},
-  //       {title:"District",field:"district"},
-  //     ];
-
-  //    // const tableRows=[delivery];
-  //     doc.text(20,20, 'Delivery Details Report');
-  //     doc.addFont('helvetica', 'normal');
-
-  //     doc.autoTable({
-  //       columns:columns.map((col)=>({...col,dataKey:col.field})),
-  //       body:this.state.delivery,
-  //     })
-  //     doc.save("DeliveryDetails.pdf");
-
-  //   }
+    doc.autoTable({
+      columns:columns.map((col)=>({...col,dataKey:col.field})),
+      body:this.state.delivery,
+    })
+    doc.save("DeliveryDetails.pdf");
+    
+  }
   render() {
     return (
       <div>
+       
+
         <div className="AddMedicines">
           <div className="container">
             <br />
@@ -105,28 +107,29 @@ class AuditorDetails extends Component {
                 <div className="col-md-8 m-auto"></div>
                 <div className="col-md-16 m-auto">
                   <br />
+                
                 </div>
               </div>
               <div className="col-md-10 m-auto">
                 <h1 className="display-3 text-center">
-                  <b>Purchase Request Details</b>
+                  <b> Delivery Details</b>
                 </h1>
                 <br />
                 <input
-                  className="form-control"
-                  type="search"
-                  placeholder="search"
-                  name="searchbar"
-                  onChange={this.handleSearchArea}
-                  style={{
-                    width: "250px",
-                  }}
-                ></input>
-                <br></br>
+            className="form-control"
+            type="search"
+            placeholder="search"
+            name="searchbar"
+            onChange={this.handleSearchArea}
+            style={{
+              width: "250px",
+            }}
+          ></input>
+          <br></br>
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Order ID </th>
+                    <th scope="col">Order ID </th>
                       <th scope="col">Company ID</th>
                       <th scope="col">Phone Number</th>
                       <th scope="col">Company Name</th>
@@ -144,24 +147,26 @@ class AuditorDetails extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.order.map((order) => (
-                      <tr key={order.order_id}>
-                        <th>{order.company_id}</th>
-                        <td>{order.company_name}</td>
-                        <td>{order.site_name}</td>
-
-                        <td>{order.supplier_name}</td>
-                        <td>{order.item}</td>
-                        <td>{order.quantity}</td>
-                        <td>{order.description}</td>
-                        <td>{order.agreed_price}</td>
-                        <td>{order.delivery_address}</td>
-                        <td>{order.delivery_date}</td>
-                        <td>{order.auditor_status}</td>
-                        <td>{order.comments}</td>
-                        <td></td>
+                    {this.state.delivery.map((delivery) => (
+                      
+                        <tr key={delivery._id}>
+                          <th>{delivery.company_id}</th>
+                          <td>{delivery.company_name}</td>
+                          <td>{delivery.site_name}</td>
+  
+                          <td>{delivery.supplier_name}</td>
+                          <td>{delivery.item}</td>
+                          <td>{delivery.quantity}</td>
+                          <td>{delivery.description}</td>
+                          <td>{delivery.agreed_price}</td>
+                          <td>{delivery.delivery_address}</td>
+                          <td>{delivery.delivery_date}</td>
+                          <td>{delivery.auditor_status}</td>
+                          <td>{delivery.comments}</td>
+                          <td></td>
+                          
                         <td>
-                          {/* <button
+                        <button
                             type="button"
                             class="btn btn-warning"
                             data-toggle="modal"
@@ -175,9 +180,10 @@ class AuditorDetails extends Component {
                             }}
                           >
                             UPDATE
-                          </button> */}
+                          </button>
+                          
                         </td>
-                        {/* <td><button
+                        <td><button
                             type="button"
                             class="btn btn-danger"
                             onClick={this.onDeleteClick.bind(
@@ -186,32 +192,41 @@ class AuditorDetails extends Component {
                             )}
                           >
                           DELETE
-                          </button></td> */}
+                          </button></td>
+
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
               <div class="row">
-                <div class="col-sm"></div>
-                <div class="col-sm"></div>
-                <div class="col-sm" style={{ paddingLeft: "600px" }}>
-                  {/* <button
+              <div class="col-sm">
+
+              </div>
+              <div class="col-sm">
+                
+              </div>
+              <div class="col-sm" style={{paddingLeft:"600px"}}>
+              <button
                             type="button"
                             class="btn btn-info"
                             onClick={this.jsPdfGenerator}
                           >
                             <i class="bi bi-printer-fill"> PRINT</i>
                         
-                          </button> */}
-                  <br /> <br />
-                </div>
+                          </button>
+                          <br/> <br/> 
+                         
               </div>
+             
+              </div>
+             
             </div>
+           
           </div>
         </div>
-
-        {/* <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
+        
+        <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -256,10 +271,11 @@ class AuditorDetails extends Component {
            
           </div>
          
-        </div> */}
+        </div>
+       
       </div>
     );
   }
 }
 
-export default AuditorDetails;
+export default DeliveryDetails;

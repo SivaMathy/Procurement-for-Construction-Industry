@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 class Order extends Component {
   state = {
-    order_id: "",
+   
     company_name: "",
     company_id: "",
     supplier_name: "",
@@ -17,8 +17,14 @@ class Order extends Component {
     site_name: "",
     auditor_status: "Pendding",
     supplier_status: "Pendding",
+    comments:""
   };
-
+  getOrder = () => {
+    axios.get("http://localhost:8000/order/find").then((res) => {
+      console.log(res);
+      this.setState({ order: res.data });
+    });
+  };
   handleChange = (e) => {
     console.log(e.target.name);
     console.log(e.target.value);
@@ -30,7 +36,7 @@ class Order extends Component {
       axios.post("http://localhost:8000/order/add", this.state).then((res) => {
         console.log("successfully posted");
         this.setState({
-          order_id: "",
+          
           company_name: "",
           company_id: "",
           supplier_name: "",
@@ -43,10 +49,12 @@ class Order extends Component {
           site_name: "",
           auditor_status: "Pendding",
           supplier_status: "Pendding",
+          comments:""
         });
       });
       window.location = "/";
     }
+   
   };
 
   render() {
@@ -67,19 +75,7 @@ class Order extends Component {
                   onSubmit={() => this.handleSubmit()}
                   className="was-validated"
                 >
-                    <div className="form-group">
-                    <label htmlFor="">Order ID</label>
-                    <input
-                      type="text"
-                      name="order_id"
-                      className="form-control"
-                      onChange={(e) => this.handleChange(e)}
-                      value={this.state.order_id}
-                      id="order_id"
-                      pattern="[a-zA-Z]{8,}"
-                      required
-                    />
-                    </div>
+                   
                   <div className="form-group">
                     <label htmlFor="">Company ID</label>
                     <input
@@ -89,7 +85,7 @@ class Order extends Component {
                       onChange={(e) => this.handleChange(e)}
                       value={this.state.company_id}
                       id="company_id"
-                      pattern="[a-zA-Z]{8,}"
+                      
                       required
                     />
                   </div>
@@ -102,7 +98,7 @@ class Order extends Component {
                       onChange={(e) => this.handleChange(e)}
                       value={this.state.company_name}
                       id="company_name"
-                      pattern="[a-zA-Z]{8,}"
+                      
                       required
                     />
                   </div>
@@ -117,19 +113,7 @@ class Order extends Component {
                       required
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="">Company ID</label>
-                    <input
-                      type="text"
-                      name="company_id"
-                      className="form-control"
-                      onChange={(e) => this.handleChange(e)}
-                      value={this.state.company_id}
-                      id="fname"
-                      pattern="[a-zA-Z]{8,}"
-                      required
-                    />
-                  </div>
+                 
                   <div className="form-group">
                     <label htmlFor="">Supplier Name</label>
                     <input
@@ -139,7 +123,7 @@ class Order extends Component {
                       onChange={(e) => this.handleChange(e)}
                       value={this.state.supplier_name}
                       id="fname"
-                      pattern="[a-zA-Z]{8,}"
+                   
                       required
                     />
                   </div>
@@ -151,7 +135,7 @@ class Order extends Component {
                       className="form-control"
                       onChange={(e) => this.handleChange(e)}
                       value={this.state.item}
-                      pattern="[a-zA-Z]{8,}"
+                     
                       required
                     />
                   </div>
@@ -174,7 +158,7 @@ class Order extends Component {
                       className="form-control"
                       onChange={(e) => this.handleChange(e)}
                       value={this.state.description}
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                      
                       required
                     />
                   </div>
@@ -214,7 +198,17 @@ class Order extends Component {
                       required
                     />
                   </div>
-                  
+                  <div className="form-group">
+                    <label htmlFor="">Comments</label>
+                    <input
+                      type="text"
+                      name="comments"
+                      className="form-control"
+                      onChange={(e) => this.handleChange(e)}
+                      value={this.state.comments}
+                      required
+                    />
+                  </div>
                   
                   <br></br>
                   <br />

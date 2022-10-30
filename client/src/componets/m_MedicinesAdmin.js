@@ -19,7 +19,7 @@ class MedicinesAdmin extends Component {
   };
 
   getMedicine = () => {
-    axios.get("http://localhost:8000/medicine/show").then((res) => {
+    axios.get("http://localhost:8000/order/find").then((res) => {
       console.log(res);
       this.setState({ medicines: res.data });
     });
@@ -112,19 +112,27 @@ class MedicinesAdmin extends Component {
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Medicine ID </th>
-                      <th scope="col">Medicine Name</th>
-                      <th scope="col">Strength</th>
-                      <th scope="col">description</th>
-                      <th scope="col">Manufacturer</th>
-                      <th scope="col">Manufacture Price</th>
-                      <th scope="col">Retail Price</th>
+                    <th scope="col">Order ID </th>
+                      <th scope="col">Company ID</th>
+                      <th scope="col">Phone Number</th>
+                      <th scope="col">Company Name</th>
+                      <th scope="col">Site Name</th>
+                      <th scope="col">Supplier Name</th>
+                      <th scope="col">Item</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Agreed Item Price</th>
+                      <th scope="col">Delivery Address</th>
+                      <th scope="col">Delivery Date</th>
+
+                      <th scope="col">Auditor Status</th>
+                      <th scope="col">Comments</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.state.medicines.map((medicines) => (
                       <tr key={medicines._id}>
-                        <th>{medicines.id}</th>
+                        <th>{medicines.company_id}</th>
                         <td>{medicines.name}</td>
                         <td>{medicines.strength}</td>
                         <td>{medicines.description}</td>
