@@ -23,7 +23,7 @@ class SupplierOrderDetails extends Component {
     axios
       .delete(`http://localhost:8000/order/delete/${id}`)
       .then((res) => {
-        this.props.history.push("/delivery");
+        this.props.history.push("/supplier");
       })
       .catch((err) => {
         console.log("Error ");
@@ -42,11 +42,13 @@ class SupplierOrderDetails extends Component {
       .put(`http://localhost:8000/order/update/${this.state.uid}`, {
         comments: this.state.ucomments,
         auditor_status: this.state.uauditor,
+        comments_supplier: this.state.ucomments_supplier,
+        supplier_status: this.state.usupplier_status,
       })
       .then((res) => {
         console.log(res);
-        this.setState({ uauditor: "", ucomments: "" ,usupplier_status:"",ucomments_supplier:""});
-        window.location = "/delivery";
+        this.setState({usupplier_status:"",ucomments_supplier:""});
+        window.location = "/supplier";
       });
   };
   handleSearchArea = (e) => {
@@ -220,7 +222,7 @@ class SupplierOrderDetails extends Component {
                 <select
                   onChange={(e) => this.handleUpdate(e)}
                   value={this.state.usupplier_status}
-                  name="uauditor"
+                  name="usupplier_status"
                   class="form-control"
                 >
                   <option>Accepted</option>
@@ -232,7 +234,7 @@ class SupplierOrderDetails extends Component {
                 <input
                   onChange={(e) => this.handleUpdate(e)}
                   value={this.state.ucomments_supplier}
-                  name="ucomments"
+                  name="ucomments_supplier"
                   class="form-control"
                   style={{
                     marginBottom: "10px",

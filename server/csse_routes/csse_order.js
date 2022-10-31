@@ -67,7 +67,7 @@ router.put("/update/:_id", (req, res) => {
  order
     .updateMany(
       { _id: _id },
-      { $set: { comments:comments,auditor_status:auditor_status,comments_supplier:comments_supplier,supplier_name:supplier_status} }
+      { $set: { comments:comments,auditor_status:auditor_status,comments_supplier:comments_supplier,supplier_status:supplier_status} }
     )
     .then((result) => {
       console.log(result);
