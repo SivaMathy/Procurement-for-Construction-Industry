@@ -4,12 +4,14 @@ import "../App.css";
 import jsPdf from "jspdf";
 import axios from "axios";
 
-class DeliveryDetails extends Component {
+class SupplierOrderDetails extends Component {
   state = {
     delivery: [],
     uauditor: "",
     ucomments: "",
     uid: "",
+    ucomments_supplier:"",
+    usupplier_status:""
   };
   getDelivery = () => {
     axios.get("http://localhost:8000/order/show").then((res) => {
@@ -43,12 +45,12 @@ class DeliveryDetails extends Component {
       })
       .then((res) => {
         console.log(res);
-        this.setState({ uauditor: "", ucomments: "" });
+        this.setState({ uauditor: "", ucomments: "" ,usupplier_status:"",ucomments_supplier:""});
         window.location = "/delivery";
       });
   };
   handleSearchArea = (e) => {
-    const searchKey = e.currentTarget.value;
+    const searchKey = e.currentTarget.value
 
     axios.get("http://localhost:8000/delivary/find").then((res) => {
       if (res.data.success) {
@@ -94,7 +96,7 @@ class DeliveryDetails extends Component {
         <div className="">
           <div className="col-md-12 m-auto">
             <h1 className="display-12 text-center">
-              <b> Accountant Page</b>
+              <b> Supplier Page</b>
             </h1>
             <br />
             <input
@@ -123,7 +125,7 @@ class DeliveryDetails extends Component {
                   <th scope="col">Delivery Address</th>
                   <th scope="col">Delivery Date</th>
 
-                  <th scope="col">Auditor Status</th>
+                  <th scope="col">Supplier Status</th>
                   <th scope="col">Comments</th>
                 </tr>
               </thead>
@@ -142,8 +144,8 @@ class DeliveryDetails extends Component {
                     <td>{delivery.agreed_price}</td>
                     <td>{delivery.delivery_address}</td>
                     <td>{delivery.delivery_date}</td>
-                    <td>{delivery.auditor_status}</td>
-                    <td>{delivery.comments}</td>
+                    <td>{delivery.supplier_status}</td>
+                    <td>{delivery.comments_supplier}</td>
                     <td></td>
                     <td>
                       <button
@@ -154,8 +156,10 @@ class DeliveryDetails extends Component {
                         onClick={() => {
                           this.setState({
                             uid: delivery._id,
-                            uauditor: delivery.auditor_status,
-                            ucomments: delivery.comments,
+                            // uauditor: delivery.auditor_status,
+                            // ucomments: delivery.comments,
+                            ucomments_supplier:delivery.comments_supplier,
+                            usupplier_status:delivery.supplier_status
                           });
                         }}
                       >
@@ -163,7 +167,7 @@ class DeliveryDetails extends Component {
                       </button>
                     </td>
                     <td>
-                      <button
+                    <button
                         type="button"
                         class="btn btn-danger"
                         onClick={this.onDeleteClick.bind(this, delivery._id)}
@@ -215,7 +219,7 @@ class DeliveryDetails extends Component {
                 /> */}
                 <select
                   onChange={(e) => this.handleUpdate(e)}
-                  value={this.state.uauditor}
+                  value={this.state.usupplier_status}
                   name="uauditor"
                   class="form-control"
                 >
@@ -227,7 +231,7 @@ class DeliveryDetails extends Component {
               <div class="modal-body">
                 <input
                   onChange={(e) => this.handleUpdate(e)}
-                  value={this.state.ucomments}
+                  value={this.state.ucomments_supplier}
                   name="ucomments"
                   class="form-control"
                   style={{
@@ -250,7 +254,7 @@ class DeliveryDetails extends Component {
                   class="btn btn-danger"
                   data-dismiss="modal"
                   onClick={() => {
-                    this.setState({ uauditor: "", ucomments: "" });
+                    this.setState({ucomments_supplier: "",usupplier_status: "" });
                   }}
                 >
                   Close
@@ -264,4 +268,4 @@ class DeliveryDetails extends Component {
   }
 }
 
-export default DeliveryDetails;
+export default SupplierOrderDetails;

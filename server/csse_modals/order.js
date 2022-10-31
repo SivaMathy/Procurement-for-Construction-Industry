@@ -57,6 +57,10 @@ const OrderSchema = new mongoose.Schema({
   comments:{
     type: String,
     
+  },
+  comments_supplier:{
+    type: String,
+    
   }
   
 });

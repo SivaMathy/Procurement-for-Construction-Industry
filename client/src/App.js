@@ -28,12 +28,14 @@ import ThHome from "./componets/pages/ThHome";
 //csse
 import Order from "./componets/csse_order2";
 import Auditor from "./componets/csse_auditor2";
+import Supplier from "./componets/csse_supplier";
+import DeliveryDetails from "./componets/m_deliveryDetails";
 
 
 // Mathy
 import AddMedicines from "./componets/m_AddMedicines";
 import MedicinesAdmin from "./componets/m_MedicinesAdmin";
-import DeliveryDetails from "./componets/m_deliveryDetails";
+
 import Pharmacy from "./componets/m_pharmacy";
 import Pay from "./componets/m_pay";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -92,6 +94,7 @@ function App() {
           <Route exact path="/cruds/:_id/ddelete" element={<Doctordelete />} />
           <Route  path="/order" element={<Order/>} />
           <Route  path="/auditor" element={<Auditor/>} />
+          <Route  path="/supplier" element={<Supplier/>} />
 
 
         </Routes>
