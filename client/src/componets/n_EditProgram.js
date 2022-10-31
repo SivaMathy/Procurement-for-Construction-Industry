@@ -32,7 +32,7 @@ export default class n_EditProgram extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     //const id = this.props.match.params.id;
-    const id = "6326cc429c3a1d51a4ba767a";
+    const id = "6358178d4d20e92f9dd72a69";
     const { title, ageGroup, gender, sample, desc, price } = this.state;
     // const navigate = useNavigate;
     const data = {
@@ -177,7 +177,7 @@ export default class n_EditProgram extends Component {
                     </div>
                   </div>
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Sample</label>
+                    <label for="phone">Unit Price(Rs)</label>
                     <input
                       type="text"
                       id="sample"
@@ -228,8 +228,8 @@ export default class n_EditProgram extends Component {
                 </div>
 
                 <div class="form-group">
-                  <label for="phone">Unit Price</label>
-                  <input
+                  <label for="phone">Status</label>
+                  {/* <input
                     type="text"
                     id="price"
                     name="price"
@@ -238,7 +238,21 @@ export default class n_EditProgram extends Component {
                     value={this.state.price}
                     onChange={this.handleInputChange}
                     required
-                  />
+                  /> */}
+                  <select
+                    type="text"
+                    id="price"
+                    name="price"
+                    class="form-control"
+                    placeholder="Enter price"
+                    value={this.state.price}
+                    onChange={this.handleInputChange}
+                    required
+                  >
+                    <option>Available</option>
+                    <option>Out of stock</option>
+                    <option>New stock will be available</option>
+                  </select>
                   <div class="invalid-feedback font-weight-bold">
                     Invalid Input.
                   </div>
