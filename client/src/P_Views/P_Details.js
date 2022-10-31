@@ -15,8 +15,8 @@ function P_Details() {
   const { updata } = useContext(updatedata);
 
   const { dltdata } = useContext(deldata);
-  const [getpatientdata, setPatientdata] = useState([]);
-  console.log(getpatientdata);
+  const [getSitedata, setSitedata] = useState([]);
+  console.log(getSitedata);
   //const { id } = useParams("");
   function GetDateOnly(date) {
     if (!date) {
@@ -39,7 +39,7 @@ function P_Details() {
     if (res.status === 422 || !data) {
       console.log("error ");
     } else {
-      setPatientdata(data);
+      setSitedata(data);
       console.log("get data");
     }
   };
@@ -48,8 +48,8 @@ function P_Details() {
     getdata();
   }, []);
 
-  const deletepatient = async (id) => {
-    const res2 = await fetch(`http://localhost:8000/deletepatient/${id}`, {
+  const deletesite = async (id) => {
+    const res2 = await fetch(`http://localhost:8000/deletesite/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +109,7 @@ function P_Details() {
       )}
       <div className="container mt-3 text-left">
         <h1 style={{ fontWeight: 400 }}></h1>
-        {getpatientdata.map((element) => {
+        {getSitedata.map((element) => {
           return (
             <>
               <div class="cards">
@@ -127,7 +127,7 @@ function P_Details() {
                         </NavLink>
                         <button
                           className="btn btn-danger"
-                          onClick={() => deletepatient(element._id)}
+                          onClick={() => deletesite(element._id)}
                         >
                           <DeleteOutlineIcon />
                         </button>
@@ -150,34 +150,34 @@ function P_Details() {
 
                         <p className="mt-3 font-bold text-lg">
                           <CreateIcon />
-                          Full Name: <span>{element.name}</span>
+                          Site Name: <span>{element.name}</span>
                         </p>
                         <p className="mt-3 font-bold text-lg">
                           <PersonIcon />
-                          Age: <span>{element.age}</span>
+                          Manager Name: <span>{element.mname}</span>
                         </p>
                         <p className="mt-3 font-bold text-lg">
                           <HomeIcon />
-                          Address: <span>{element.address}</span>
+                          Site Address: <span>{element.address}</span>
                         </p>
                       </div>
 
                       <div className="right_view  col-lg-6 col-md-6 col-12  mt-5 ">
                         <p className="mt-3 font-bold text-lg -mt-3">
                           <SummarizeIcon />
-                          Report Date: <span>{element.rdate}</span>
+                          Start Date: <span>{GetDateOnly(element.sdate)}</span>
                         </p>
                         <p className="mt-3 font-bold text-lg">
                           <CalendarTodayIcon />
-                          Date: <span>{GetDateOnly(element.date)}</span>
+                          End Date: <span>{GetDateOnly(element.edate)}</span>
                         </p>
-                        <p className="mt-3 font-bold text-lg">
+                        {/* <p className="mt-3 font-bold text-lg">
                           <WcIcon />
                           Gender: <span>{element.gender}</span>
-                        </p>
+                        </p> */}
                         <p className="mt-3 font-bold text-lg">
                           <PhoneEnabledIcon />
-                          Phone Number: <span>{element.mobile}</span>
+                          Contact Number: <span>{element.num}</span>
                         </p>
                       </div>
                     </div>

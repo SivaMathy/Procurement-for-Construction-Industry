@@ -8,7 +8,7 @@ const app = express();
 
 const cors = require("cors");
 
-const patients = require("./P_models/PatientsSchema");
+const site = require("./P_models/SitesSchema");
 
 const router = require("./P_routes/router");
 

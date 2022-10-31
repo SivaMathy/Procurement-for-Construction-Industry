@@ -1,35 +1,35 @@
 const express = require("express");
 const router = express.Router();
 
-const Patients = require("../P_models/PatientsSchema");
+const site = require("../P_models/SitesSchema");
 
 router.post("/form", async (req, res) => {
   console.log(req.body);
-  const { name, age, address, mobile, gender, date } = req.body;
+  const { name, mname, address, num, sdate, edate } = req.body;
 
-  if (!name || !age || !address || !mobile || !gender || !date) {
+  if (!name || !mname || !address || !num || !sdate || !edate) {
     res.status(422).json("plz fill the data");
   }
 
   try {
-    const prepatient = await Patients.findOne({ mobile: mobile });
-    console.log(prepatient);
+    const presite = await site.findOne({ mobile: mobile });
+    console.log(presite);
 
-    if (prepatient) {
-      res.status(422).json("this Patient is already present");
+    if (presite) {
+      res.status(422).json("this site is already present");
     } else {
-      const addpatient = new Patients({
+      const addsite = new site({
         name,
-        age,
+        mname,
         address,
-        mobile,
-        gender,
-        date,
+        num,
+        sdate,
+        edate,
       });
 
-      await addpatient.save();
-      res.status(201).json(addpatient);
-      console.log(addpatient);
+      await addsite.save();
+      res.status(201).json(addsite);
+      console.log(addsite);
     }
   } catch (error) {
     res.status(422).json(error);
@@ -39,9 +39,9 @@ router.post("/form", async (req, res) => {
 //get all
 router.get("/admin", async (req, res) => {
   try {
-    const patientdata = await Patients.find();
-    res.status(201).json(patientdata);
-    console.log(patientdata);
+    const sitedata = await site.find();
+    res.status(201).json(sitedata);
+    console.log(sitedata);
   } catch (error) {
     res.status(422).json(error);
   }
@@ -49,14 +49,14 @@ router.get("/admin", async (req, res) => {
 
 // get individual user
 
-router.get("/getpatient/:id", async (req, res) => {
+router.get("/getsite/:id", async (req, res) => {
   try {
     console.log(req.params);
     const { id } = req.params;
 
-    const patientindividual = await Patients.findById({ _id: id });
-    console.log(patientindividual);
-    res.status(201).json(patientindividual);
+    const siteindividual = await site.findById({ _id: id });
+    console.log(siteindividual);
+    res.status(201).json(siteindividual);
   } catch (error) {
     res.status(422).json(error);
   }
@@ -64,29 +64,29 @@ router.get("/getpatient/:id", async (req, res) => {
 
 //update appointment
 
-router.patch("/updatepatient/:id", async (req, res) => {
+router.patch("/updatesite/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const updatedpatient = await Patients.findByIdAndUpdate(id, req.body, {
+    const updatedsite = await site.findByIdAndUpdate(id, req.body, {
       new: true,
     });
 
-    console.log(updatedpatient);
-    res.status(201).json(updatedpatient);
+    console.log(updatedsite);
+    res.status(201).json(updatedsite);
   } catch (error) {
     res.status(422).json(error);
   }
 });
 
 // delete appointment
-router.delete("/deletepatient/:id", async (req, res) => {
+router.delete("/deletesite/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const deletpatient = await Patients.findByIdAndDelete({ _id: id });
-    console.log(deletpatient);
-    res.status(201).json(deletpatient);
+    const deletsite = await site.findByIdAndDelete({ _id: id });
+    console.log(deletsite);
+    res.status(201).json(deletsite);
   } catch (error) {
     res.status(422).json(error);
   }

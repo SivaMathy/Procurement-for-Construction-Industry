@@ -10,15 +10,15 @@ import { CalendarOutlined } from "@ant-design/icons";
 import { Input, Button, Form } from "antd";
 import { adddata } from "./context/ContextProvider";
 const P_Form = () => {
-  const {  setUdata } = useContext(adddata);
+  const { setUdata } = useContext(adddata);
   const history = useNavigate();
   const [inpval, setINP] = useState({
     name: "",
-    age: "",
-    Address: "",
-    mobile: "",
-    gender: "",
-    date: "",
+    mname: "",
+    address: "",
+    num: "",
+    sdate: "",
+    edate: "",
   });
 
   const setdata = (e) => {
@@ -35,7 +35,7 @@ const P_Form = () => {
   const addinpdata = async (e) => {
     e.preventDefault();
 
-    const { name, age, address, mobile, gender, date } = inpval;
+    const { name, mname, address, num, sdate, edate } = inpval;
 
     const res = await fetch("http://localhost:8000/form", {
       method: "POST",
@@ -44,11 +44,11 @@ const P_Form = () => {
       },
       body: JSON.stringify({
         name,
-        age,
+        mname,
         address,
-        mobile,
-        gender,
-        date,
+        num,
+        sdate,
+        edate,
       }),
     });
 
@@ -69,7 +69,7 @@ const P_Form = () => {
     <div class="h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
       <div className="container mt-5 bg-white shadow-xl rounded border-2 border-gray-600 text-left">
         <p className="text-center font-bold text-5xl text-blue-800 hover:text-blue-700 text-opacity-100 hover:underline ">
-           Appointment
+          Add Site Details
         </p>
         <div class="btn-group-toggle" data-toggle="buttons">
           <Link to="/labdash">
@@ -85,13 +85,13 @@ const P_Form = () => {
                 for="exampleInputEmail1"
                 class="form-label font-bold text-lg"
               >
-                Full Name
+                Site Name
               </label>
               <Form.Item
                 rules={[
                   {
                     required: true,
-                    message: "Please input your Name!",
+                    message: "Please input Site Name!",
                   },
                 ]}
               >
@@ -112,15 +112,15 @@ const P_Form = () => {
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Age
+                Manager Name
               </label>
               <Input
                 prefix={<UserOutlined />}
-                placeholder="Age"
-                name="age"
-                value={inpval.age}
+                placeholder="Manager Name"
+                name="mname"
+                value={inpval.mname}
                 size="large"
-                type="number"
+                type="text"
                 onChange={setdata}
               />
             </div>
@@ -129,7 +129,7 @@ const P_Form = () => {
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Home Address
+                Site Address
               </label>
               <Input
                 type="text"
@@ -146,20 +146,20 @@ const P_Form = () => {
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Mobile Numer
+                Contact Numer
               </label>
 
               <Input
                 prefix={<PhoneOutlined />}
                 placeholder="Contact Number"
                 size="large"
-                name="mobile"
+                name="num"
                 type="number"
-                value={inpval.mobile}
+                value={inpval.num}
                 onChange={setdata}
               />
             </div>
-            <div class="mb-3 col-lg-6 col-md-6 col-12">
+            {/* <div class="mb-3 col-lg-6 col-md-6 col-12">
               <label class="form-label font-bold text-lg">Gender</label>
               <select
                 class="form-select"
@@ -172,37 +172,53 @@ const P_Form = () => {
                 <option>Female</option>
                 <option>Other</option>
               </select>
+            </div> */}
+            <div class="mb-3 col-lg-6 col-md-6 col-12">
+              <label
+                for="exampleInputPassword1"
+                class="form-label font-bold text-lg"
+              >
+                Start Date
+              </label>
+              <Input
+                prefix={<CalendarOutlined />}
+                size="large"
+                name="sdate"
+                type="date"
+                value={inpval.sdate}
+                onChange={setdata}
+              />
             </div>
             <div class="mb-3 col-lg-6 col-md-6 col-12">
               <label
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Date
+                End Date
               </label>
               <Input
                 prefix={<CalendarOutlined />}
                 size="large"
-                name="date"
+                name="edate"
                 type="date"
-                value={inpval.date}
+                value={inpval.edate}
                 onChange={setdata}
               />
             </div>
 
             <div class="flex justify-end">
               <div class="flex space-x-4 mb-5 mt-3">
-              <a href="/labdash">
-                <button type="button" class="btn btn-outline-danger">
-                  Cancel
-                </button>
+                <a href="/labdash">
+                  <button type="button" class="btn btn-outline-danger">
+                    Cancel
+                  </button>
                 </a>
                 <button
                   type="submit"
                   class="btn btn-primary"
                   onClick={addinpdata}
                 >
-                  Book Now
+                  ADD
                 </button>
               </div>
             </div>

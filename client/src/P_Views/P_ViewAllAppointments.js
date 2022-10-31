@@ -7,14 +7,14 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 function P_ViewAllAppointments() {
-  const { udata} = useContext(adddata);
+  const { udata } = useContext(adddata);
   const { updata } = useContext(updatedata);
 
   const { dltdata } = useContext(deldata);
-  const [getpatientdata, setPatientdata] = useState([]);
+  const [getSitedata, setSitedata] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  console.log(getpatientdata);
+  console.log(getSitedata);
 
   function GetDateOnly(date) {
     if (!date) {
@@ -32,12 +32,12 @@ function P_ViewAllAppointments() {
     });
 
     const data = await res.json();
-    setPatientdata(data);
+    setSitedata(data);
 
     if (res.status === 422 || !data) {
       console.log("error ");
     } else {
-      setPatientdata(data);
+      setSitedata(data);
       console.log("get data");
     }
   };
@@ -46,8 +46,8 @@ function P_ViewAllAppointments() {
     getdata();
   }, []);
 
-  const deletepatient = async (id) => {
-    const res2 = await fetch(`http://localhost:8000/deletepatient/${id}`, {
+  const deletesite = async (id) => {
+    const res2 = await fetch(`http://localhost:8000/deletesite/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function P_ViewAllAppointments() {
     if (res2.status === 422 || !deletedata) {
       console.log("error");
     } else {
-      console.log("Patient deleted");
+      console.log("site deleted");
 
       getdata();
     }
@@ -68,21 +68,20 @@ function P_ViewAllAppointments() {
   const pdfGenerate = () => {
     var doc = new jsPDF("landscape", "px", "a4", "false");
     const columns = [
-      { title: "Full Name", field: "name" },
-      { title: "Age", field: "age" },
+      { title: "Site Name", field: "name" },
+      { title: "Site Manager", field: "mname" },
       { title: "Address", field: "address" },
-      { title: "MobileNumber", field: "mobile" },
-      { title: "Date", field: "date" },
-      { title: "Report Date", field: "rdate" },
+      { title: "Contact Number", field: "num" },
+      { title: "Start Date", field: "sdate" },
+      { title: "End Date", field: "edate" },
     ];
-   
 
-    doc.text(70, 10, "Patients' Lab Test Details");
+    doc.text(70, 10, "sites' Lab Test Details");
     doc.autoTable({
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: getpatientdata,
+      body: getSitedata,
     });
-    doc.save("LabTest_Details.pdf");
+    doc.save("Sites_Details.pdf");
   };
 
   return (
@@ -146,7 +145,7 @@ function P_ViewAllAppointments() {
       <div className="mt-5">
         <div className="container">
           <p className="text-center font-bold text-5xl text-blue-800 hover:text-blue-700 text-opacity-100 hover:underline -mt-6">
-            All Laboratory Testing Appointments
+            All Construction Site Details
           </p>
           <div class="flex space-x-64">
             <div className="mb-1">
@@ -180,20 +179,20 @@ function P_ViewAllAppointments() {
             <thead>
               <tr className="table-dark">
                 <th scope="col">#ID</th>
-                <th scope="col">Full Name</th>
-                <th scope="col">Age</th>
+                <th scope="col">Site Name</th>
+                <th scope="col">Manager Name</th>
                 <th scope="col">Address</th>
-                <th scope="col">MobileNumber</th>
-                <th scope="col">Date</th>
-                <th scope="col">Report Date</th>
-                <th scope="col" className="text-center">
+                <th scope="col">Contact Number</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                {/* <th scope="col" className="text-center">
                   Assign Report Date
-                </th>
+                </th> */}
                 <th scope="col">Cancel</th>
               </tr>
             </thead>
             <tbody>
-              {getpatientdata
+              {getSitedata
                 .filter((element) => {
                   if (searchTerm == "") {
                     return element;
@@ -211,23 +210,23 @@ function P_ViewAllAppointments() {
                       <tr>
                         <th scope="row">{id + 1}</th>
                         <td>{element.name}</td>
-                        <td>{element.age}</td>
+                        <td>{element.mname}</td>
                         <td>{element.address}</td>
-                        <td>{element.mobile}</td>
-                        <td>{GetDateOnly(element.date)}</td>
-                        <td>{GetDateOnly(element.rdate)}</td>
+                        <td>{element.num}</td>
+                        <td>{GetDateOnly(element.sdate)}</td>
+                        <td>{GetDateOnly(element.edate)}</td>
 
-                        <td className="d-flex ml-3">
+                        {/* <td className="d-flex ml-3">
                           <NavLink to={`editdate/${element._id}`}>
                             <button className="btn btn-primary">
                               <CalendarTodayIcon />
                             </button>
                           </NavLink>
-                        </td>
+                        </td> */}
                         <td>
                           <button
                             className="btn btn-danger"
-                            onClick={() => deletepatient(element._id)}
+                            onClick={() => deletesite(element._id)}
                           >
                             <DeleteOutlineIcon />
                           </button>

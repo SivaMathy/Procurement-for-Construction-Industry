@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const patientsSchema = new mongoose.Schema({
+const SitesSchema = new mongoose.Schema({
   name: {
     type: String,
     required: false,
   },
-  age: {
+  mname: {
     type: String,
     required: false,
   },
@@ -13,25 +13,22 @@ const patientsSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  mobile: {
+  num: {
     type: Number,
     required: false,
     unique: true,
     maxLength: 10,
   },
-  gender: {
-    type: String,
-    required: false,
-  },
-  date: {
+
+  sdate: {
     type: Date,
     required: false,
   },
-  rdate: {
+  edate: {
     type: Date,
   },
 });
 
-const patients = new mongoose.model("patients", patientsSchema);
+const site = new mongoose.model("sites", SitesSchema);
 
-module.exports = patients;
+module.exports = site;
