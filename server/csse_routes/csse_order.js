@@ -57,22 +57,17 @@ router.get("/show", (req, res) => {
     );
 });
 router.put("/update/:_id", (req, res) => {
-  // const fname = req.body.fname;
-  // const lname = req.body.lname;
-  // const phonenum = req.body.phonenum;
-  // const email = req.body.email;
-  // const city = req.body.city;
-  // const province = req.body.province;
-  // const district = req.body.district;
-  // const address = req.params.address;
+
   const _id = req.params._id;
-  // const isCheck=req.body.isCheck;
   const comments=req.body.comments;
   const auditor_status=req.body.auditor_status;
+  const supplier_status=req.body.supplier_status;
+  const comments_supplier=req.body.comments_supplier;
+
  order
     .updateMany(
       { _id: _id },
-      { $set: { comments:comments,auditor_status:auditor_status} }
+      { $set: { comments:comments,auditor_status:auditor_status,comments_supplier:comments_supplier,supplier_name:supplier_status} }
     )
     .then((result) => {
       console.log(result);
@@ -83,4 +78,16 @@ router.put("/update/:_id", (req, res) => {
       res.status(500).json({ msg: "error occurred" });
     });
 });
+router.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  delivary.remove({ _id: id }, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("error occured");
+    } else {
+      res.status(200).json({ msg: "successfully deleted" });
+    }
+  });
+});
+
 module.exports = router;
