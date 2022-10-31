@@ -14,7 +14,7 @@ import { updatedata, deldata } from "./context/ContextProvider";
 function P_Details() {
   const { updata } = useContext(updatedata);
 
-  const { dltdata} = useContext(deldata);
+  const { dltdata } = useContext(deldata);
   const [getpatientdata, setPatientdata] = useState([]);
   console.log(getpatientdata);
   //const { id } = useParams("");
@@ -193,3 +193,4 @@ function P_Details() {
 }
 
 export default P_Details;
+// test
