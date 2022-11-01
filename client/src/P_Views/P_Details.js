@@ -11,6 +11,7 @@ import WcIcon from "@mui/icons-material/Wc";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import { updatedata, deldata } from "./context/ContextProvider";
+import logo from "../assets/logo4.png";
 function P_Details() {
   const { updata } = useContext(updatedata);
 
@@ -136,13 +137,12 @@ function P_Details() {
                     <div className="row">
                       <div className="left_view col-lg-6 col-md-6 col-12">
                         <div class="flex space-x-4 mt-1 ">
-                          {" "}
                           <img
-                            src="/static/media/logo.904da08d3398460b35f7.webp"
-                            style={{ width: 80 }}
-                            alt="profile"
                             className="-mt-8"
+                            src={logo}
+                            style={{ width: 80 }}
                           />
+
                           <p className="text-center font-bold text-2xl text-blue-600">
                             Silva & Sons
                           </p>

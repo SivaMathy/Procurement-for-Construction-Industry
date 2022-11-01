@@ -5,20 +5,20 @@ import { HomeOutlined } from "@ant-design/icons";
 import { PhoneOutlined } from "@ant-design/icons";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { CalendarOutlined } from "@ant-design/icons";
-import { Input} from "antd";
+import { Input } from "antd";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { updatedata } from "./context/ContextProvider";
 function P_UserEdit() {
-  const {  setUPdata } = useContext(updatedata);
+  const { setUPdata } = useContext(updatedata);
 
   const history = useNavigate();
   const [inpval, setINP] = useState({
     name: "",
-    age: "",
-    Address: "",
-    mobile: "",
-    gender: "",
-    date: "",
+    mname: "",
+    address: "",
+    num: "",
+    sdate: "",
+    edate: "",
   });
   function GetDateOnly(date) {
     if (!date) {
@@ -42,7 +42,7 @@ function P_UserEdit() {
   console.log(id);
 
   const getdata = async () => {
-    const res = await fetch(`http://localhost:8000/getpatient/${id}`, {
+    const res = await fetch(`http://localhost:8000/getsite/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -64,23 +64,23 @@ function P_UserEdit() {
     getdata();
   }, []);
 
-  const updatepatient = async (e) => {
+  const updatesite = async (e) => {
     e.preventDefault();
 
-    const { name, age, address, mobile, gender, date } = inpval;
+    const { name, mname, address, num, sdate, edate } = inpval;
 
-    const res2 = await fetch(`http://localhost:8000/updatepatient/${id}`, {
+    const res2 = await fetch(`http://localhost:8000/updatesite/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
-        age,
+        mname,
         address,
-        mobile,
-        gender,
-        date,
+        num,
+        sdate,
+        edate,
       }),
     });
 
@@ -98,9 +98,9 @@ function P_UserEdit() {
 
   return (
     <div class="h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
-      <div className="container mt-5 bg-white shadow-xl rounded border-2 border-gray-600 ">
+      <div className="container mt-5 bg-white shadow-xl rounded border-2 border-gray-600 text-left">
         <p className="text-center font-bold text-5xl text-blue-800 hover:text-blue-700 text-opacity-100 hover:underline ">
-          Assign Report Date
+          Edit Site Details
         </p>
         <div class="btn-group-toggle" data-toggle="buttons">
           <Link to="/view">
@@ -116,7 +116,7 @@ function P_UserEdit() {
                 for="exampleInputEmail1"
                 class="form-label font-bold text-lg"
               >
-                Full Name
+                Site Name
               </label>
               <Input
                 prefix={<EditOutlined />}
@@ -134,15 +134,15 @@ function P_UserEdit() {
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Age
+                Manager Name
               </label>
               <Input
                 prefix={<UserOutlined />}
                 placeholder="Age"
-                name="age"
-                value={inpval.age}
+                name="mname"
+                value={inpval.mname}
                 size="large"
-                type="number"
+                type="text"
                 onChange={setdata}
               />
             </div>
@@ -151,7 +151,7 @@ function P_UserEdit() {
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Home Address
+                Site Address
               </label>
               <Input
                 type="text"
@@ -168,20 +168,20 @@ function P_UserEdit() {
                 for="exampleInputPassword1"
                 class="form-label font-bold text-lg"
               >
-                Mobile Numer
+                Contact Numer
               </label>
 
               <Input
                 prefix={<PhoneOutlined />}
                 placeholder="Contact Number"
                 size="large"
-                name="mobile"
+                name="num"
                 type="number"
-                value={inpval.mobile}
+                value={inpval.num}
                 onChange={setdata}
               />
             </div>
-            <div class="mb-3 col-lg-6 col-md-6 col-12">
+            {/* <div class="mb-3 col-lg-6 col-md-6 col-12">
               <label class="form-label font-bold text-lg">Gender</label>
               <select
                 class="form-select"
@@ -194,32 +194,43 @@ function P_UserEdit() {
                 <option>Female</option>
                 <option>Other</option>
               </select>
-            </div>
+            </div> */}
             <div class="mb-3 col-lg-6 col-md-6 col-12">
-              <label class="form-label font-bold text-lg">Date</label>
+              <label class="form-label font-bold text-lg">Start Date</label>
               <Input
                 prefix={<CalendarOutlined />}
                 size="large"
-                name="date"
+                name="sdate"
                 type="date"
-                value={GetDateOnly(inpval.date)}
+                value={GetDateOnly(inpval.sdate)}
                 onChange={setdata}
               />
-              <div class="flex justify-end">
-                <div class="flex space-x-4 mt-5 ">
+            </div>
+            <div class="mb-3 col-lg-6 col-md-6 col-12">
+              <label class="form-label font-bold text-lg">End Date</label>
+              <Input
+                prefix={<CalendarOutlined />}
+                size="large"
+                name="edate"
+                type="date"
+                value={GetDateOnly(inpval.edate)}
+                onChange={setdata}
+              />
+            </div>
+            <div class="flex justify-end">
+              <div class="flex space-x-4 mt-5 ">
                 <a href="/view">
                   <button type="button" class="btn btn-outline-danger">
                     Cancel
                   </button>
-                  </a>
-                  <button
-                    type="button"
-                    onClick={updatepatient}
-                    class="btn btn-primary"
-                  >
-                    Update
-                  </button>
-                </div>
+                </a>
+                <button
+                  type="button"
+                  onClick={updatesite}
+                  class="btn btn-primary"
+                >
+                  Update
+                </button>
               </div>
             </div>
           </div>
