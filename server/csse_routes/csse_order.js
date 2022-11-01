@@ -13,7 +13,6 @@ router.post("/add", (req, res) => {
     company_name: req.body.company_name,
     company_id: req.body.company_id,
     supplier_name: req.body.supplier_name,
-   
     item:req.body.item,
     quantity: req.body.quantity,
     description: req.body.description,

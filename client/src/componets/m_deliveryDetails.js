@@ -13,8 +13,12 @@ class DeliveryDetails extends Component {
   };
   getDelivery = () => {
     axios.get("http://localhost:8000/order/show").then((res) => {
-      console.log(res);
       this.setState({ delivery: res.data });
+      var reterived_data=res;
+      console.log(res);
+      if(reterived_data.agreed_price>100000){
+        var filter_data=reterived_data;
+      }
     });
   };
   onDeleteClick(id) {
@@ -128,7 +132,8 @@ class DeliveryDetails extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.delivery.map((delivery) => (
+                {this.state.filter_data.map((delivery) => (
+                
                   <tr key={delivery._id}>
                     <th>{delivery._id}</th>
 

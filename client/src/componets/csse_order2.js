@@ -171,7 +171,7 @@ class Order extends Component {
                       className="form-control"
                       onChange={(e) => this.handleChange(e)}
                       value={this.state.agreed_price}
-                      pattern="[a-z]{4,}"
+                     
                       required
                     />
                   </div>
