@@ -108,9 +108,9 @@ export default class n_programs extends Component {
                       <th scope="col">Supplier Name</th>
                       <th scope="col">Item Name</th>
                       <th scope="col">Item Id</th>
-                      <th scope="col">Sample</th>
-                      <th scope="col">Description</th>
                       <th scope="col">Unit Price(Rs)</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -130,7 +130,11 @@ export default class n_programs extends Component {
                         <td>{programs.gender}</td>
                         <td>{programs.sample}</td>
                         <td>{programs.desc}</td>
-                        <td>{programs.price}</td>
+                        <td>
+                          <span class="badge badge-success">
+                            {programs.price}
+                          </span>
+                        </td>
                         <td>
                           <a
                             className="btn btn-warning"

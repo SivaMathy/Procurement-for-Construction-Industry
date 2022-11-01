@@ -13,7 +13,7 @@ export default class n_CreateProgram extends Component {
       gender: "",
       sample: "",
       desc: "",
-      price: "",
+      price: "Available",
       users: [],
     };
   }
@@ -140,7 +140,7 @@ export default class n_CreateProgram extends Component {
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Item Id</label>
+                    <label for="phone">Supplier Id</label>
                     <input
                       type="text"
                       id="gender"
@@ -174,13 +174,13 @@ export default class n_CreateProgram extends Component {
                     </div>
                   </div>
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Sample</label>
+                    <label for="phone">Unit Price</label>
                     <input
                       type="text"
                       id="sample"
                       name="sample"
                       class="form-control"
-                      placeholder="Enter sample"
+                      placeholder="Enter Unit Price"
                       value={this.state.sample}
                       onChange={this.handleInputChange}
                       required
@@ -224,7 +224,7 @@ export default class n_CreateProgram extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                {/* <div class="form-group">
                   <label for="price">Unit Price</label>
                   <input
                     type="text"
@@ -241,7 +241,7 @@ export default class n_CreateProgram extends Component {
                     Invalid Input.
                   </div>
                   <div class="valid-feedback font-weight-bold">Looks good!</div>
-                </div>
+                </div> */}
 
                 <button
                   type="submit"
