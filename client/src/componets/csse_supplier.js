@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import jsPdf from "jspdf";
 import axios from "axios";
 
 class SupplierOrderDetails extends Component {
@@ -23,7 +22,7 @@ class SupplierOrderDetails extends Component {
     axios
       .delete(`http://localhost:8000/order/delete/${id}`)
       .then((res) => {
-        this.props.history.push("/delivery");
+        this.props.history.push("/supplier");
       })
       .catch((err) => {
         console.log("Error ");
@@ -42,11 +41,13 @@ class SupplierOrderDetails extends Component {
       .put(`http://localhost:8000/order/update/${this.state.uid}`, {
         comments: this.state.ucomments,
         auditor_status: this.state.uauditor,
+        comments_supplier: this.state.ucomments_supplier,
+        supplier_status: this.state.usupplier_status,
       })
       .then((res) => {
         console.log(res);
-        this.setState({ uauditor: "", ucomments: "" ,usupplier_status:"",ucomments_supplier:""});
-        window.location = "/delivery";
+        this.setState({usupplier_status:"",ucomments_supplier:""});
+        window.location = "/supplier";
       });
   };
   handleSearchArea = (e) => {
@@ -66,30 +67,7 @@ class SupplierOrderDetails extends Component {
 
     this.setState({ delivery: result });
   }
-  //pdf generation
-
-  jsPdfGenerator = (delivery) => {
-    var doc = new jsPdf("p", "pt");
-
-    const columns = [
-      { title: "First Name", field: "fname" },
-      { title: "Last Name", field: "lname" },
-      { title: "Email", field: "email" },
-      { title: "Phone Number", field: "phonenum" },
-      { title: "City", field: "city" },
-      { title: "District", field: "district" },
-    ];
-
-    // const tableRows=[delivery];
-    doc.text(20, 20, "Delivery Details Report");
-    doc.addFont("helvetica", "normal");
-
-    doc.autoTable({
-      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: this.state.delivery,
-    });
-    doc.save("DeliveryDetails.pdf");
-  };
+ 
   render() {
     return (
       <div className="container">
@@ -131,12 +109,11 @@ class SupplierOrderDetails extends Component {
               </thead>
               <tbody>
                 {this.state.delivery.map((delivery) => (
+                  delivery.auditor_status==="Accepted"?
                   <tr key={delivery._id}>
                     <th>{delivery._id}</th>
-
                     <td>{delivery.company_name}</td>
                     <td>{delivery.site_name}</td>
-
                     <td>{delivery.supplier_name}</td>
                     <td>{delivery.item}</td>
                     <td>{delivery.quantity}</td>
@@ -146,7 +123,9 @@ class SupplierOrderDetails extends Component {
                     <td>{delivery.delivery_date}</td>
                     <td>{delivery.supplier_status}</td>
                     <td>{delivery.comments_supplier}</td>
+                    
                     <td></td>
+
                     <td>
                       <button
                         type="button"
@@ -156,13 +135,12 @@ class SupplierOrderDetails extends Component {
                         onClick={() => {
                           this.setState({
                             uid: delivery._id,
-                            // uauditor: delivery.auditor_status,
-                            // ucomments: delivery.comments,
                             ucomments_supplier:delivery.comments_supplier,
                             usupplier_status:delivery.supplier_status
                           });
                         }}
                       >
+                        
                         <i className="fas fa-edit"></i>
                       </button>
                     </td>
@@ -176,7 +154,10 @@ class SupplierOrderDetails extends Component {
                       </button>
                     </td>
                   </tr>
-                ))}
+                  :
+                  <td></td>
+                  
+               ))}
               </tbody>
             </table>
           </div>
@@ -184,13 +165,7 @@ class SupplierOrderDetails extends Component {
             <div class="col-sm"></div>
             <div class="col-sm"></div>
             <div class="col-sm" style={{ paddingLeft: "600px" }}>
-              <button
-                type="button"
-                class="btn btn-info"
-                onClick={this.jsPdfGenerator}
-              >
-                <i class="bi bi-printer-fill"> PRINT</i>
-              </button>
+             
               <br /> <br />
             </div>
           </div>
@@ -205,22 +180,10 @@ class SupplierOrderDetails extends Component {
                 </button>
               </div>
               <div class="modal-body">
-                {/* <input
-                  onChange={(e) => this.handleUpdate(e)}
-                  value={this.state.uauditor}
-                  name="uauditor"
-                  class="form-control"
-                  style={{
-                    marginBottom: "10px",
-                    fontFamily: "cursive",
-                    fontSize: "15px",
-                  }}
-                  placeholder="Auditor Status"
-                /> */}
                 <select
                   onChange={(e) => this.handleUpdate(e)}
                   value={this.state.usupplier_status}
-                  name="uauditor"
+                  name="usupplier_status"
                   class="form-control"
                 >
                   <option>Accepted</option>
@@ -232,7 +195,7 @@ class SupplierOrderDetails extends Component {
                 <input
                   onChange={(e) => this.handleUpdate(e)}
                   value={this.state.ucomments_supplier}
-                  name="ucomments"
+                  name="ucomments_supplier"
                   class="form-control"
                   style={{
                     marginBottom: "10px",

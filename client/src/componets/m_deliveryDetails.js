@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import jsPdf from "jspdf";
 import axios from "axios";
 
 class DeliveryDetails extends Component {
@@ -13,8 +12,8 @@ class DeliveryDetails extends Component {
   };
   getDelivery = () => {
     axios.get("http://localhost:8000/order/show").then((res) => {
-      console.log(res);
       this.setState({ delivery: res.data });
+      
     });
   };
   onDeleteClick(id) {
@@ -64,30 +63,9 @@ class DeliveryDetails extends Component {
 
     this.setState({ delivery: result });
   }
-  //pdf generation
 
-  jsPdfGenerator = (delivery) => {
-    var doc = new jsPdf("p", "pt");
 
-    const columns = [
-      { title: "First Name", field: "fname" },
-      { title: "Last Name", field: "lname" },
-      { title: "Email", field: "email" },
-      { title: "Phone Number", field: "phonenum" },
-      { title: "City", field: "city" },
-      { title: "District", field: "district" },
-    ];
-
-    // const tableRows=[delivery];
-    doc.text(20, 20, "Delivery Details Report");
-    doc.addFont("helvetica", "normal");
-
-    doc.autoTable({
-      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: this.state.delivery,
-    });
-    doc.save("DeliveryDetails.pdf");
-  };
+ 
   render() {
     return (
       <div className="container">
@@ -112,7 +90,6 @@ class DeliveryDetails extends Component {
               <thead>
                 <tr>
                   <th scope="col">Order ID </th>
-
                   <th scope="col">Company Name</th>
                   <th scope="col">Site Name</th>
                   <th scope="col">Supplier Name</th>
@@ -122,7 +99,6 @@ class DeliveryDetails extends Component {
                   <th scope="col">Agreed Item Price</th>
                   <th scope="col">Delivery Address</th>
                   <th scope="col">Delivery Date</th>
-
                   <th scope="col">Auditor Status</th>
                   <th scope="col">Comments</th>
                 </tr>
@@ -131,10 +107,8 @@ class DeliveryDetails extends Component {
                 {this.state.delivery.map((delivery) => (
                   <tr key={delivery._id}>
                     <th>{delivery._id}</th>
-
                     <td>{delivery.company_name}</td>
                     <td>{delivery.site_name}</td>
-
                     <td>{delivery.supplier_name}</td>
                     <td>{delivery.item}</td>
                     <td>{delivery.quantity}</td>
@@ -180,13 +154,7 @@ class DeliveryDetails extends Component {
             <div class="col-sm"></div>
             <div class="col-sm"></div>
             <div class="col-sm" style={{ paddingLeft: "600px" }}>
-              <button
-                type="button"
-                class="btn btn-info"
-                onClick={this.jsPdfGenerator}
-              >
-                <i class="bi bi-printer-fill"> PRINT</i>
-              </button>
+              
               <br /> <br />
             </div>
           </div>

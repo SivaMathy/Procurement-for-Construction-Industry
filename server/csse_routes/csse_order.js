@@ -13,7 +13,6 @@ router.post("/add", (req, res) => {
     company_name: req.body.company_name,
     company_id: req.body.company_id,
     supplier_name: req.body.supplier_name,
-   
     item:req.body.item,
     quantity: req.body.quantity,
     description: req.body.description,
@@ -67,7 +66,7 @@ router.put("/update/:_id", (req, res) => {
  order
     .updateMany(
       { _id: _id },
-      { $set: { comments:comments,auditor_status:auditor_status,comments_supplier:comments_supplier,supplier_name:supplier_status} }
+      { $set: { comments:comments,auditor_status:auditor_status,comments_supplier:comments_supplier,supplier_status:supplier_status} }
     )
     .then((result) => {
       console.log(result);
