@@ -52,7 +52,11 @@ function NavBar() {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/employees">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/patients"
+                  >
                     Users
                   </a>
                 </li>

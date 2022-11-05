@@ -71,7 +71,7 @@ export default class n_home extends Component {
             marginTop: "25px",
           }}
         >
-         <h2> Admin Dashboard</h2>
+          <h2> Admin Dashboard</h2>
         </div>
         <Container className="mt-5">
           <Row>
@@ -105,7 +105,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/employees"
+                          href="/patients"
                         >
                           <img
                             class="d-block w-100"
@@ -137,7 +137,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/supplier"
+                          href="/programs"
                         >
                           <img
                             class="d-block w-100"
