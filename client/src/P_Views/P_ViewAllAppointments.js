@@ -76,7 +76,7 @@ function P_ViewAllAppointments() {
       { title: "End Date", field: "edate" },
     ];
 
-    doc.text(70, 10, "sites' Lab Test Details");
+    doc.text(70, 10, "sites' Details");
     doc.autoTable({
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
       body: getSitedata,
@@ -147,8 +147,18 @@ function P_ViewAllAppointments() {
           <p className="text-center font-bold text-5xl text-blue-800 hover:text-blue-700 text-opacity-100 hover:underline -mt-6">
             All Construction Site Details
           </p>
+
           <div class="flex space-x-64">
-            <div className="mb-1">
+            <div className="mb-1 space-x-2">
+              <button
+                className="btn btn-primary "
+                style={{ marginRight: "50px" }}
+              >
+                <i className="fas fa-plus"></i>&nbsp;&nbsp;
+                <a className="text-decoration-none text-white " href="/form">
+                  ADD
+                </a>
+              </button>
               <button
                 className="btn btn-primary text-left"
                 style={{ marginRight: "210px" }}

@@ -218,7 +218,7 @@ function P_UserEdit() {
               />
             </div>
             <div class="flex justify-end">
-              <div class="flex space-x-4 mt-5 ">
+              <div class="flex space-x-4 mt-3 mb-3 ">
                 <a href="/view">
                   <button type="button" class="btn btn-outline-danger">
                     Cancel

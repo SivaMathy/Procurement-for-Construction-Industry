@@ -210,7 +210,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/site"
+                          href="/view"
                         >
                           <img
                             class="d-block w-100"
