@@ -47,12 +47,16 @@ function NavBar() {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/view">
+                  <a class="nav-link active" aria-current="page" href="/">
                     Sites
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/employees">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/employees"
+                  >
                     Users
                   </a>
                 </li>
