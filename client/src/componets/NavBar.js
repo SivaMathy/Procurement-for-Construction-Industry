@@ -23,38 +23,37 @@ function NavBar() {
                     Home
                   </a>
                 </li>
-
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/thhome">
-                    Book Appointment
+                  <a class="nav-link active" aria-current="page" href="/order">
+                    Orders
                   </a>
                 </li>
                 <li class="nav-item">
                   <a
                     class="nav-link active"
                     aria-current="page"
-                    href="/labdash"
+                    href="/accountant"
                   >
-                    Book Lab Test
+                    Accountant
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/supplier"
+                  >
+                    Supplier
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/view">
-                    View Lab Appointments
+                    Sites
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/phar">
-                    Buy Medicines
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    aria-current="page"
-                    href="/patientsProgram"
-                  >
-                    Health Programs
+                  <a class="nav-link active" aria-current="page" href="/employees">
+                    Users
                   </a>
                 </li>
               </ul>
