@@ -55,7 +55,11 @@ function NavBar() {
                   <a
                     class="nav-link active"
                     aria-current="page"
+<<<<<<< HEAD
+                    href="/patients"
+=======
                     href="/employees"
+>>>>>>> main
                   >
                     Users
                   </a>
