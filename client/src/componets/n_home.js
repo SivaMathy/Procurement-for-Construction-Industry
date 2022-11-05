@@ -71,7 +71,7 @@ export default class n_home extends Component {
             marginTop: "25px",
           }}
         >
-          <h2> Admin Dashboard</h2>
+         <h2> Admin Dashboard</h2>
         </div>
         <Container className="mt-5">
           <Row>
@@ -105,7 +105,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/patients"
+                          href="/employees"
                         >
                           <img
                             class="d-block w-100"
@@ -137,7 +137,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/programs"
+                          href="/supplier"
                         >
                           <img
                             class="d-block w-100"
@@ -148,7 +148,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Supplier
+                          Manage Suppliers
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -177,7 +177,10 @@ export default class n_home extends Component {
                           width: "200px",
                         }}
                       >
-                        <a className="text-decoration-none text-dark " href="/">
+                        <a
+                          className="text-decoration-none text-dark "
+                          href="/supplier"
+                        >
                           <img
                             class="d-block w-100"
                             src={labManagement}
@@ -187,7 +190,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Labtest Management
+                          Manage Orders
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -207,7 +210,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/delivery"
+                          href="/site"
                         >
                           <img
                             class="d-block w-100"
@@ -218,7 +221,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Delivery
+                          Manage Sites
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -249,7 +252,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/cruds/tab"
+                          href="/accountant"
                         >
                           <img
                             class="d-block w-100"
@@ -260,7 +263,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Doctor Management
+                          Manage Budget
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -291,7 +294,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Medicine
+                          Manage Delivery
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
